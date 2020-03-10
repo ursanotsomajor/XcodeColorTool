@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F0D9B54241797A2004DAB35 /* ColorReplacementOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D9B53241797A2004DAB35 /* ColorReplacementOperation.swift */; };
+		2F0D9B56241797B4004DAB35 /* ColorReplacementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D9B55241797B4004DAB35 /* ColorReplacementModel.swift */; };
 		2F68F6D724172B20003FA2F6 /* FileListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68F6D624172B20003FA2F6 /* FileListItemView.swift */; };
 		2F68F6D924172B49003FA2F6 /* FileListColorItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68F6D824172B49003FA2F6 /* FileListColorItemView.swift */; };
-		2F68F6DB24172B6B003FA2F6 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68F6DA24172B6B003FA2F6 /* CustomColor.swift */; };
+		2F68F6DB24172B6B003FA2F6 /* Color + Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68F6DA24172B6B003FA2F6 /* Color + Hex.swift */; };
 		2F68F6DD24172B96003FA2F6 /* FileListControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68F6DC24172B96003FA2F6 /* FileListControls.swift */; };
 		2F68F6E0241733D1003FA2F6 /* ColorInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68F6DF241733D1003FA2F6 /* ColorInputView.swift */; };
 		2F68F6E224175234003FA2F6 /* FileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68F6E124175234003FA2F6 /* FileModel.swift */; };
+		2F7FCF5D2418300B004C79AD /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7FCF582418300A004C79AD /* Document.swift */; };
+		2F7FCF5E2418300B004C79AD /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7FCF592418300A004C79AD /* Options.swift */; };
+		2F7FCF5F2418300B004C79AD /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7FCF5A2418300A004C79AD /* Element.swift */; };
+		2F7FCF602418300B004C79AD /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7FCF5B2418300B004C79AD /* Parser.swift */; };
+		2F7FCF612418300B004C79AD /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7FCF5C2418300B004C79AD /* Error.swift */; };
+		2FCBC7602417A54C00E290FD /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCBC75F2417A54C00E290FD /* RadioButton.swift */; };
 		2FD802D12414232B00D07D08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD802D02414232B00D07D08 /* AppDelegate.swift */; };
 		2FD802D32414232B00D07D08 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD802D22414232B00D07D08 /* ContentView.swift */; };
 		2FD802D52414232D00D07D08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FD802D42414232D00D07D08 /* Assets.xcassets */; };
@@ -24,12 +32,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F0D9B53241797A2004DAB35 /* ColorReplacementOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorReplacementOperation.swift; sourceTree = "<group>"; };
+		2F0D9B55241797B4004DAB35 /* ColorReplacementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorReplacementModel.swift; sourceTree = "<group>"; };
 		2F68F6D624172B20003FA2F6 /* FileListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListItemView.swift; sourceTree = "<group>"; };
 		2F68F6D824172B49003FA2F6 /* FileListColorItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListColorItemView.swift; sourceTree = "<group>"; };
-		2F68F6DA24172B6B003FA2F6 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		2F68F6DA24172B6B003FA2F6 /* Color + Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Hex.swift"; sourceTree = "<group>"; };
 		2F68F6DC24172B96003FA2F6 /* FileListControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListControls.swift; sourceTree = "<group>"; };
 		2F68F6DF241733D1003FA2F6 /* ColorInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorInputView.swift; sourceTree = "<group>"; };
 		2F68F6E124175234003FA2F6 /* FileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileModel.swift; sourceTree = "<group>"; };
+		2F7FCF582418300A004C79AD /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		2F7FCF592418300A004C79AD /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		2F7FCF5A2418300A004C79AD /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		2F7FCF5B2418300B004C79AD /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		2F7FCF5C2418300B004C79AD /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		2FCBC75F2417A54C00E290FD /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		2FD802CD2414232B00D07D08 /* XcodeColorTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcodeColorTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FD802D02414232B00D07D08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FD802D22414232B00D07D08 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,17 +70,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F68F6D524172B11003FA2F6 /* FileList */ = {
-			isa = PBXGroup;
-			children = (
-				2F68F6DE24172C57003FA2F6 /* List Items */,
-				2FD802E92414788E00D07D08 /* FileListView.swift */,
-				2F68F6DC24172B96003FA2F6 /* FileListControls.swift */,
-				2F68F6DF241733D1003FA2F6 /* ColorInputView.swift */,
-			);
-			path = FileList;
-			sourceTree = "<group>";
-		};
 		2F68F6DE24172C57003FA2F6 /* List Items */ = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +77,37 @@
 				2F68F6D824172B49003FA2F6 /* FileListColorItemView.swift */,
 			);
 			path = "List Items";
+			sourceTree = "<group>";
+		};
+		2F7FCF622418300E004C79AD /* AEXML */ = {
+			isa = PBXGroup;
+			children = (
+				2F7FCF582418300A004C79AD /* Document.swift */,
+				2F7FCF5A2418300A004C79AD /* Element.swift */,
+				2F7FCF5C2418300B004C79AD /* Error.swift */,
+				2F7FCF592418300A004C79AD /* Options.swift */,
+				2F7FCF5B2418300B004C79AD /* Parser.swift */,
+			);
+			path = AEXML;
+			sourceTree = "<group>";
+		};
+		2FB492B12417977500D0CEBF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2F68F6E124175234003FA2F6 /* FileModel.swift */,
+				2F0D9B55241797B4004DAB35 /* ColorReplacementModel.swift */,
+				2F0D9B53241797A2004DAB35 /* ColorReplacementOperation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2FCBC7612417AB5500E290FD /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				2F68F6DE24172C57003FA2F6 /* List Items */,
+				2FCBC75F2417A54C00E290FD /* RadioButton.swift */,
+			);
+			path = "UI Elements";
 			sourceTree = "<group>";
 		};
 		2FD802C42414232B00D07D08 = {
@@ -93,10 +129,10 @@
 		2FD802CF2414232B00D07D08 /* XcodeColorTool */ = {
 			isa = PBXGroup;
 			children = (
+				2F7FCF622418300E004C79AD /* AEXML */,
 				2FD802D02414232B00D07D08 /* AppDelegate.swift */,
-				2F68F6E124175234003FA2F6 /* FileModel.swift */,
 				2FD802E724145F9600D07D08 /* XMLManager.swift */,
-				2F68F6DA24172B6B003FA2F6 /* CustomColor.swift */,
+				2FB492B12417977500D0CEBF /* Models */,
 				2FD802EB2414795600D07D08 /* Views */,
 				2FE968102415DDD700401FDC /* Assets */,
 				2FD802D62414232D00D07D08 /* Preview Content */,
@@ -115,9 +151,12 @@
 		2FD802EB2414795600D07D08 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2FCBC7612417AB5500E290FD /* UI Elements */,
 				2FD802D22414232B00D07D08 /* ContentView.swift */,
 				2FD802E32414313F00D07D08 /* DragAndDropView.swift */,
-				2F68F6D524172B11003FA2F6 /* FileList */,
+				2FD802E92414788E00D07D08 /* FileListView.swift */,
+				2F68F6DC24172B96003FA2F6 /* FileListControls.swift */,
+				2F68F6DF241733D1003FA2F6 /* ColorInputView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -125,6 +164,7 @@
 		2FE968102415DDD700401FDC /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				2F68F6DA24172B6B003FA2F6 /* Color + Hex.swift */,
 				2FD802D42414232D00D07D08 /* Assets.xcassets */,
 				2FD802D92414232D00D07D08 /* Main.storyboard */,
 				2FD802DC2414232D00D07D08 /* Info.plist */,
@@ -206,13 +246,21 @@
 			files = (
 				2F68F6D924172B49003FA2F6 /* FileListColorItemView.swift in Sources */,
 				2F68F6E0241733D1003FA2F6 /* ColorInputView.swift in Sources */,
+				2F7FCF5F2418300B004C79AD /* Element.swift in Sources */,
 				2FD802D32414232B00D07D08 /* ContentView.swift in Sources */,
+				2F7FCF5E2418300B004C79AD /* Options.swift in Sources */,
 				2FD802E42414313F00D07D08 /* DragAndDropView.swift in Sources */,
 				2F68F6DD24172B96003FA2F6 /* FileListControls.swift in Sources */,
+				2F7FCF612418300B004C79AD /* Error.swift in Sources */,
+				2F0D9B56241797B4004DAB35 /* ColorReplacementModel.swift in Sources */,
 				2FD802EA2414788E00D07D08 /* FileListView.swift in Sources */,
+				2F7FCF5D2418300B004C79AD /* Document.swift in Sources */,
 				2F68F6D724172B20003FA2F6 /* FileListItemView.swift in Sources */,
 				2FD802D12414232B00D07D08 /* AppDelegate.swift in Sources */,
-				2F68F6DB24172B6B003FA2F6 /* CustomColor.swift in Sources */,
+				2F68F6DB24172B6B003FA2F6 /* Color + Hex.swift in Sources */,
+				2F0D9B54241797A2004DAB35 /* ColorReplacementOperation.swift in Sources */,
+				2F7FCF602418300B004C79AD /* Parser.swift in Sources */,
+				2FCBC7602417A54C00E290FD /* RadioButton.swift in Sources */,
 				2FD802E824145F9600D07D08 /* XMLManager.swift in Sources */,
 				2F68F6E224175234003FA2F6 /* FileModel.swift in Sources */,
 			);

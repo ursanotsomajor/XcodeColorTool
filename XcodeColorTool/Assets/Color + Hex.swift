@@ -25,28 +25,3 @@ extension Color
         self.init(.sRGB, red: Double(r) / 255, green: Double(g) / 255, blue:  Double(b) / 255, opacity: Double(a) / 255)
     }
 }
-
-struct CustomColor: Identifiable, Hashable
-{
-    var id = UUID()
-    
-    let color: Color
-    
-    var textRepresentation: String
-    {
-        return color.description
-    }
-}
-
-struct ColorReplacementModel: Identifiable, Equatable
-{
-    var id = UUID()
-    
-    let fromColor: CustomColor
-    let toColor: CustomColor
-    
-    static func == (lhs: Self, rhs: Self) -> Bool
-    {
-        return lhs.id == rhs.id
-    }
-}

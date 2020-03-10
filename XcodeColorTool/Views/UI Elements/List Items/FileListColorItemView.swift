@@ -2,25 +2,23 @@ import SwiftUI
 
 struct FileListColorItemView: View
 {
-    let colorPair: ColorReplacementModel
+    let replacement: ColorReplacementModel
     let selected: Bool
     
     var body: some View
     {
         HStack(alignment: .center, spacing: 6) {
-            Text(colorPair.fromColor.textRepresentation)
+            
+            Text(replacement.color.description)
             
             Rectangle()
-                .foregroundColor(colorPair.fromColor.color)
+                .foregroundColor(replacement.color)
                 .frame(width: 16, height: nil, alignment: .center)
+                .border(Color.black, width: 1)
             
             Text(" —> ")
             
-            Text(colorPair.toColor.textRepresentation)
-            
-            Rectangle()
-                .foregroundColor(colorPair.toColor.color)
-                .frame(width: 16, height: nil, alignment: .center)
+            Text(replacement.name)
             
             Spacer()
         }

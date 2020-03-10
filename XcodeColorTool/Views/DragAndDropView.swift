@@ -3,7 +3,6 @@ import SwiftUI
 struct DragAndDropView: View
 {
     let state: XMLManagerState
-
     let dropActive: Bool
     
     var body: some View

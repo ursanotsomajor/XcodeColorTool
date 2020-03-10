@@ -2,14 +2,12 @@ import SwiftUI
 
 struct FileListControls: View
 {
-    var onReplaceColorsPressed: ((_ files: [FileModel], _ replacements: [ColorReplacementModel]) -> Void)?
+    var onReplaceColorsPressed: CompletionBlock?
     
-    @State var list: [FileModel]
+    @ObservedObject var operation: ColorReplacementOperation
     
+    @State private var selectedColorReplacement: ColorReplacementModel?
     @State private var addingColor = false
-    
-    @State private var colorPairs = [ColorReplacementModel]()
-    @State private var selectedPair: ColorReplacementModel?
     
     var body: some View
     {
@@ -24,7 +22,6 @@ struct FileListControls: View
                 controlsView()
             }
         }
-        .padding(32)
     }
     
     private func colorInputView() -> AnyView
@@ -36,7 +33,7 @@ struct FileListControls: View
         }
         
         view.onColorAdded = { pair in
-            self.colorPairs.append(pair)
+            self.operation.replacements.append(pair)
             self.addingColor = false
         }
         
@@ -48,22 +45,25 @@ struct FileListControls: View
         return AnyView(
             
             VStack {
-
-                List(colorPairs) { pair in
-                    FileListColorItemView(colorPair: pair, selected: pair == self.selectedPair)
-                        .onTapGesture { self.selectedPair = pair }
+                
+                List(operation.replacements) { replacement in
+                    FileListColorItemView(replacement: replacement, selected: replacement == self.selectedColorReplacement)
+                        .onTapGesture {
+                            if self.selectedColorReplacement == replacement { self.selectedColorReplacement = nil }
+                            else { self.selectedColorReplacement = replacement }
+                    }
                 }
                 
                 HStack {
                     
                     Button(action: {
-                        self.colorPairs.removeAll(where: { $0.id == self.selectedPair?.id })
+                        self.operation.replacements.removeAll(where: { $0.id == self.selectedColorReplacement?.id })
                     }) {
                         Text("-")
                     }
                     
                     Spacer()
-                    
+
                     Button(action: {
                         self.addingColor = true
                     }) {
@@ -73,20 +73,22 @@ struct FileListControls: View
             }
         )
     }
-    
+
     private func controlsView() -> AnyView
     {
         return AnyView(
-            VStack {
-                Text("Selected \(list.filter({ !$0.checked }).count) files out of \(list.count)")
-                
-                Button(action: {
-                    self.onReplaceColorsPressed?(self.list.filter({ $0.checked }), self.colorPairs)
-                }, label: {
-                    Text("Replace colors")
-                        .foregroundColor(Color.black)
-                        .font(.subheadline)
-                })
+            VStack(spacing: 12) {
+                Text("Selected: \(operation.selectedFiles.count) / \(operation.files.count)")
+
+                HStack(spacing: 12) {
+                    TextField("Color delta", text: $operation.colorDelta)
+
+                    Button(action: {
+                        self.onReplaceColorsPressed?()
+                    }) {
+                        Text("Replace colors")
+                    }
+                }
             }
         )
     }

@@ -2,7 +2,7 @@ import SwiftUI
 
 enum XMLManagerState
 {
-    case waiting, loading(foundXIBs: Int, foundStoryboards: Int), presenting(list: [FileModel])
+    case waiting, loading(foundXIBs: Int, foundStoryboards: Int), presenting(operation: ColorReplacementOperation)
 }
 
 class XMLManager: NSObject, ObservableObject
@@ -11,8 +11,7 @@ class XMLManager: NSObject, ObservableObject
     
     func load(url: URL)
     {
-        print("Reading files at: \(url.path)")
-        print()
+        print("Reading files at: \(url.path)\n")
         
         DispatchQueue.main.async {
             self.state = .loading(foundXIBs: 0, foundStoryboards: 0)
@@ -25,14 +24,10 @@ class XMLManager: NSObject, ObservableObject
     {
         let id = kUTTypeFileURL as String
         
-        guard let itemProvider = info.itemProviders(for: [id]).first else {
-            return false
-        }
+        guard let itemProvider = info.itemProviders(for: [id]).first else { return false }
 
         itemProvider.loadItem(forTypeIdentifier: id, options: nil) { item, error in
-            guard let data = item as? Data,
-                let url = URL(dataRepresentation: data, relativeTo: nil) else { return }
-
+            guard let data = item as? Data, let url = URL(dataRepresentation: data, relativeTo: nil) else { return }
             self.load(url: url)
         }
         
@@ -75,15 +70,15 @@ class XMLManager: NSObject, ObservableObject
         }
         
         DispatchQueue.main.async {
-            self.state = .presenting(list: models)
+            self.state = .presenting(operation: ColorReplacementOperation(files: models))
         }
     }
     
-    func replaceColors(files: [FileModel], replacements: [ColorReplacementModel])
+    func replaceColors(operation: ColorReplacementOperation)
     {
-        for file in files
+        for file in operation.selectedFiles
         {
-            rewrite(file: file, replacements: replacements)
+            rewrite(file: file, replacements: operation.replacements)
         }
     }
 }
@@ -92,27 +87,13 @@ extension XMLManager: XMLParserDelegate
 {
     private func rewrite(file: FileModel, replacements: [ColorReplacementModel])
     {
-        guard let parser = XMLParser(contentsOf: file.url) else { return }
-        
-        parser.delegate = self
-        parser.parse()
-    }
-    
-    func parserDidStartDocument(_ parser: XMLParser)
-    {
-        print(parser)
-    }
-    
-    func parserDidEndDocument(_ parser: XMLParser)
-    {
-        
-    }
-    
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?,
-                qualifiedName qName: String?, attributes attributeDict: [String : String] = [:])
-    {
-        print(elementName)
-        print(attributeDict)
-        print()
+        do {
+            let data = try Data(contentsOf: file.url)
+            let xmlDoc = try AEXMLDocument(xml: data, options: AEXMLOptions())
+            print(xmlDoc.xml)
+        }
+        catch {
+            print(error)
+        }
     }
 }

@@ -24,11 +24,11 @@ struct ContentView: View
         case .waiting, .loading:
             return AnyView(DragAndDropView(state: manager.state, dropActive: dropActive))
 
-        case .presenting(let list):
-            var view = FileListView(list: list)
+        case .presenting(let operation):
+            var view = FileListView(operation: operation)
             
-            view.onReplaceColorsPressed = { files, replacements in
-                self.manager.replaceColors(files: files, replacements: replacements)
+            view.onReplaceColorsPressed = { operation in
+                self.manager.replaceColors(operation: operation)
             }
             
             return AnyView(view)
