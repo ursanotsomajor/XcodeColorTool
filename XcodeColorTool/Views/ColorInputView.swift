@@ -3,7 +3,7 @@ import SwiftUI
 struct ColorInputView: View
 {
     var onCancelPressed: CompletionBlock?
-    var onColorAdded: ((_ colorPair: ColorReplacementModel) -> Void)?
+    var onColorAdded: ((_ replacement: ColorReplacementModel) -> Void)?
     
     @State var color: String = ""
     @State var name: String = ""

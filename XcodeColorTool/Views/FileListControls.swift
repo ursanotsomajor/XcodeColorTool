@@ -32,8 +32,8 @@ struct FileListControls: View
             self.addingColor = false
         }
         
-        view.onColorAdded = { pair in
-            self.operation.replacements.append(pair)
+        view.onColorAdded = { replacement in
+            self.operation.colorReplacements.append(replacement)
             self.addingColor = false
         }
         
@@ -46,7 +46,7 @@ struct FileListControls: View
             
             VStack {
                 
-                List(operation.replacements) { replacement in
+                List(operation.colorReplacements) { replacement in
                     FileListColorItemView(replacement: replacement, selected: replacement == self.selectedColorReplacement)
                         .onTapGesture {
                             if self.selectedColorReplacement == replacement { self.selectedColorReplacement = nil }
@@ -57,7 +57,7 @@ struct FileListControls: View
                 HStack {
                     
                     Button(action: {
-                        self.operation.replacements.removeAll(where: { $0.id == self.selectedColorReplacement?.id })
+                        self.operation.colorReplacements.removeAll(where: { $0.id == self.selectedColorReplacement?.id })
                     }) {
                         Text("-")
                     }

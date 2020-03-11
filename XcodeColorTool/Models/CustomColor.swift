@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CustomColor
+struct CustomColor: Hashable
 {
     let r: Double
     let g: Double
