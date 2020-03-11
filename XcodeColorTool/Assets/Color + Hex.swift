@@ -2,7 +2,7 @@ import SwiftUI
 
 extension Color
 {
-    init(hex: String)
+    static func rgba(from hex: String) -> (r: Double, g: Double, b: Double, a: Double)?
     {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0
@@ -19,9 +19,9 @@ extension Color
         case 8: // ARGB (32-bit)
             (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
         default:
-            (a, r, g, b) = (1, 1, 1, 0)
+            return nil
         }
-
-        self.init(.sRGB, red: Double(r) / 255, green: Double(g) / 255, blue:  Double(b) / 255, opacity: Double(a) / 255)
+        
+        return (Double(r) / 255, Double(g) / 255, Double(b) / 255, Double(a) / 255)
     }
 }

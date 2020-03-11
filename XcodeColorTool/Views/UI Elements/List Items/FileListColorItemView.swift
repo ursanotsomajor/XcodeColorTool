@@ -9,10 +9,10 @@ struct FileListColorItemView: View
     {
         HStack(alignment: .center, spacing: 6) {
             
-            Text(replacement.color.description)
+            Text(replacement.customColor.hex)
             
             Rectangle()
-                .foregroundColor(replacement.color)
+                .foregroundColor(replacement.customColor.color)
                 .frame(width: 16, height: nil, alignment: .center)
                 .border(Color.black, width: 1)
             

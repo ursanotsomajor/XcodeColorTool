@@ -7,11 +7,7 @@ struct ColorInputView: View
     
     @State var color: String = ""
     @State var name: String = ""
-    
-    private var colorModel: ColorReplacementModel {
-        return ColorReplacementModel(color: Color(hex: "color"), name: name)
-    }
-    
+
     var body: some View
     {
         VStack(spacing: 12) {
@@ -28,11 +24,18 @@ struct ColorInputView: View
                 }
                 
                 Button(action: {
-                    self.onColorAdded?(self.colorModel)
+                    self.saveColor()
                 }) {
                     Text("Done")
                 }
             }
         }
+    }
+    
+    private func saveColor()
+    {
+        guard let color = CustomColor(hex: color) else { return }
+        
+        self.onColorAdded?(ColorReplacementModel(customColor: color, name: name))
     }
 }

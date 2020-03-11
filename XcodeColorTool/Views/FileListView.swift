@@ -20,7 +20,7 @@ struct FileListView: View
     
     private func list() -> AnyView
     {
-        return AnyView( List(operation.files) { item -> FileListItemView in
+        return AnyView(List(operation.files) { item -> FileListItemView in
             var view = FileListItemView(model: item, checked: self.operation.selectedFileIDs.contains(item.id))
             
             view.onCheckStatusUpdated = { model, checked in

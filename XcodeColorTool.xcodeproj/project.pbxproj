@@ -15,6 +15,7 @@
 		2F68F6DD24172B96003FA2F6 /* FileListControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68F6DC24172B96003FA2F6 /* FileListControls.swift */; };
 		2F68F6E0241733D1003FA2F6 /* ColorInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68F6DF241733D1003FA2F6 /* ColorInputView.swift */; };
 		2F68F6E224175234003FA2F6 /* FileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68F6E124175234003FA2F6 /* FileModel.swift */; };
+		2F760706241867150051D8B5 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F760705241867150051D8B5 /* CustomColor.swift */; };
 		2F7FCF5D2418300B004C79AD /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7FCF582418300A004C79AD /* Document.swift */; };
 		2F7FCF5E2418300B004C79AD /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7FCF592418300A004C79AD /* Options.swift */; };
 		2F7FCF5F2418300B004C79AD /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7FCF5A2418300A004C79AD /* Element.swift */; };
@@ -40,6 +41,7 @@
 		2F68F6DC24172B96003FA2F6 /* FileListControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListControls.swift; sourceTree = "<group>"; };
 		2F68F6DF241733D1003FA2F6 /* ColorInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorInputView.swift; sourceTree = "<group>"; };
 		2F68F6E124175234003FA2F6 /* FileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileModel.swift; sourceTree = "<group>"; };
+		2F760705241867150051D8B5 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		2F7FCF582418300A004C79AD /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		2F7FCF592418300A004C79AD /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		2F7FCF5A2418300A004C79AD /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				2F68F6E124175234003FA2F6 /* FileModel.swift */,
+				2F760705241867150051D8B5 /* CustomColor.swift */,
 				2F0D9B55241797B4004DAB35 /* ColorReplacementModel.swift */,
 				2F0D9B53241797A2004DAB35 /* ColorReplacementOperation.swift */,
 			);
@@ -262,6 +265,7 @@
 				2F7FCF602418300B004C79AD /* Parser.swift in Sources */,
 				2FCBC7602417A54C00E290FD /* RadioButton.swift in Sources */,
 				2FD802E824145F9600D07D08 /* XMLManager.swift in Sources */,
+				2F760706241867150051D8B5 /* CustomColor.swift in Sources */,
 				2F68F6E224175234003FA2F6 /* FileModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
