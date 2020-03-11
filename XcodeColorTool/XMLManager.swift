@@ -97,7 +97,7 @@ extension XMLManager
             let data = try Data(contentsOf: file.url)
             let xmlDocument = try AEXMLDocument(xml: data, options: AEXMLOptions())
             
-//            print("Parsing: \(file.name)\n")
+            print("\n—————————————————— Parsing: \(file.name) ——————————————————\n")
             
             // Adding Named Colors dependency if there is none
             let dependencies = xmlDocument.root["dependencies"]
@@ -170,6 +170,7 @@ extension XMLManager
     private func replaceColor(in element: AEXMLElement, with replacements: [ColorReplacementModel])
     {
         let attributes = element.attributes
+        print(attributes)
         
         if let whiteString = attributes["white"], let white = Double(whiteString)
         {
