@@ -7,7 +7,7 @@ class ColorReplacementOperation: ObservableObject
     
     @Published var colorReplacements: [ColorReplacementModel]
     
-    @Published var colorDelta: String
+    @Published var colorDelta: Double
     
     var selectedFiles: [FileModel] {
         return files.filter({ selectedFileIDs.contains($0.id) })
@@ -19,7 +19,8 @@ class ColorReplacementOperation: ObservableObject
         self.files = files
         
         self.selectedFileIDs = Set(files.map({ $0.id }))
-        self.colorReplacements = []
-        self.colorDelta = ""
+        self.colorReplacements = [ColorReplacementModel(customColor: CustomColor(hex: "FF7E7E")!, name: "PalePink"),
+                                  ColorReplacementModel(customColor: CustomColor(hex: "484848")!, name: "Dark")]
+        self.colorDelta = 0.1
     }
 }

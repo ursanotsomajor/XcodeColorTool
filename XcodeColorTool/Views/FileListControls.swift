@@ -8,6 +8,8 @@ struct FileListControls: View
     
     @State private var selectedColorReplacement: ColorReplacementModel?
     @State private var addingColor = false
+    @State private var colorDeltaString = ""
+    
     
     var body: some View
     {
@@ -47,9 +49,9 @@ struct FileListControls: View
             VStack {
                 
                 List(operation.colorReplacements) { replacement in
-                    FileListColorItemView(replacement: replacement, selected: replacement == self.selectedColorReplacement)
+                    FileListColorItemView(replacement: replacement, selected: replacement.id == self.selectedColorReplacement?.id)
                         .onTapGesture {
-                            if self.selectedColorReplacement == replacement { self.selectedColorReplacement = nil }
+                            if self.selectedColorReplacement?.id == replacement.id { self.selectedColorReplacement = nil }
                             else { self.selectedColorReplacement = replacement }
                     }
                 }
@@ -81,9 +83,15 @@ struct FileListControls: View
                 Text("Selected: \(operation.selectedFiles.count) / \(operation.files.count)")
 
                 HStack(spacing: 12) {
-                    TextField("Color delta", text: $operation.colorDelta)
+                    TextField("Color delta", text: $colorDeltaString)
 
+                    Spacer()
+                    
                     Button(action: {
+                        if !self.colorDeltaString.isEmpty, let delta = Double(self.colorDeltaString) {
+                            self.operation.colorDelta = delta
+                        }
+                        
                         self.onReplaceColorsPressed?()
                     }) {
                         Text("Replace colors")

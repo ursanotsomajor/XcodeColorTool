@@ -20,5 +20,15 @@ struct CustomColor: Hashable
         self.hex = hex
     }
     
+    init(r: Double, g: Double, b: Double, a: Double)
+    {
+        self.r = r
+        self.g = g
+        self.b = b
+        self.a = a
+        
+        self.hex = String(format: "#%06x", Int(r*255) << 16 | Int(g*255) << 8 | Int(b*255) << 0)
+    }
+    
     var color: Color { Color(.sRGB, red: r, green: g, blue: b, opacity: a) }
 }

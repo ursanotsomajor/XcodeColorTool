@@ -27,7 +27,7 @@ class XMLManager: NSObject, ObservableObject
     {
         for file in operation.selectedFiles
         {
-            parse(file: file, replacements: operation.colorReplacements)
+            parse(file: file, replacements: operation.colorReplacements, delta: operation.colorDelta)
         }
     }
 }
@@ -43,10 +43,10 @@ extension XMLManager
             self.state = .loading(foundXIBs: 0, foundStoryboards: 0)
         }
         
-        listFiles(url: url)
+        readInterfaceFiles(url: url)
     }
     
-    private func listFiles(url: URL)
+    private func readInterfaceFiles(url: URL)
     {
         let fileManager = FileManager.default
         var models = [FileModel]()
@@ -85,19 +85,31 @@ extension XMLManager
             self.state = .presenting(operation: ColorReplacementOperation(files: models))
         }
     }
+    
+    private func readColorPalette(url: URL)
+    {
+        guard case .presenting(let operation) = state else { return }
+        
+        
+        
+        DispatchQueue.main.async {
+            operation.colorReplacements = []
+        }
+    }
 }
 
 
 // MARK: Parsing
 extension XMLManager
 {
-    private func parse(file: FileModel, replacements: [ColorReplacementModel])
+    private func parse(file: FileModel, replacements: [ColorReplacementModel], delta: Double)
     {
         do {
             let data = try Data(contentsOf: file.url)
             let xmlDocument = try AEXMLDocument(xml: data, options: AEXMLOptions())
             
             print("\n—————————————————— Parsing: \(file.name) ——————————————————\n")
+            
             
             // Adding Named Colors dependency if there is none
             let dependencies = xmlDocument.root["dependencies"]
@@ -110,11 +122,11 @@ extension XMLManager
             
             
             //Replacing all exact or similar colors within delta
-            let colorElements = extractColorElements(in: xmlDocument.root)
+            let colorElements = extractColorElements(in: xmlDocument.root["objects"])
             
             for item in colorElements
             {
-                replaceColor(in: item, with: replacements)
+                replaceColor(in: item, with: replacements, delta: delta)
             }
             
             
@@ -139,9 +151,16 @@ extension XMLManager
                 namedColor.addChild(name: "color", value: nil, attributes: colorAttributes)
                 resources.addChild(namedColor)
             }
+            
+            do {
+                try xmlDocument.xml.write(to: file.url, atomically: false, encoding: .utf8)
+            }
+            catch {
+                print("Error rewriting \(file.name): \(error)")
+            }
         }
         catch {
-            print(error)
+            print("Couldn't extract XML from \(file.name) — \(file.url)")
         }
     }
     
@@ -167,42 +186,46 @@ extension XMLManager
         return colorElements
     }
     
-    private func replaceColor(in element: AEXMLElement, with replacements: [ColorReplacementModel])
+    private func replaceColor(in element: AEXMLElement,
+                              with replacements: [ColorReplacementModel], delta: Double)
     {
         let attributes = element.attributes
-        print(attributes)
         
-        if let whiteString = attributes["white"], let white = Double(whiteString)
-        {
-//            let customColorSpace = attributes["customColorSpace"]
-//            let colorSpace = attributes["colorSpace"]
-//            let alphaString = attributes["alpha"]
-//            let alpha = Double(alphaString)
-//            let key = attributes["key"]
-        }
-        else if let redString = attributes["red"], let red = Double(redString),
+        guard let key = attributes["key"] else { return }
+        
+        if let redString = attributes["red"], let red = Double(redString),
             let greenString = attributes["green"], let green = Double(greenString),
             let blueString = attributes["blue"], let blue = Double(blueString)
         {
-//            let customColorSpace = attributes["customColorSpace"]
-//            let colorSpace = attributes["colorSpace"]
-//            let alphaString = attributes["alpha"]
-//            let alpha = Double(alphaString)
-//            let key = attributes["key"]
+            if let replacement = replacements.first(where: { $0.isSimilar(r: red, g: green, b: blue, delta: delta) })
+            {
+                element.attributes = ["key": key, "name": replacement.name]
+            }
+            else
+            {
+                print("Couldn't find custom color")
+                print(element.xml)
+            }
         }
-        else if let cocoaTouchSystemColor = attributes["cocoaTouchSystemColor"], let key = attributes["key"]
-        {
-//            let systemColor = attributes["systemColor"]
-        }
-        else if let key = attributes["key"], let name = attributes["name"]
-        {
-
-        }
-        else
-        {
-            print("Couldn't parse")
-            print(element.attributes)
-            print(element.xml)
-        }
+//        else if let whiteString = attributes["white"], let white = Double(whiteString)
+//        {
+//
+//        }
+//        else if let cocoaTouchSystemColor = attributes["cocoaTouchSystemColor"]
+//        {
+//        }
+//        else let name = attributes["name"]
+//        {
+//            return // Named color
+//        }
+//        else
+//        {
+//
+//        }
+//
+//        if let c = color, let replacement = replacements.first(where: { $0.isSimilar(to: c) })
+//        {
+//            element.attributes = ["key": key, "name": replacement.name]
+//        }
     }
 }
