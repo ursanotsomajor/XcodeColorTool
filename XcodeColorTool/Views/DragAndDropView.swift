@@ -2,12 +2,12 @@ import SwiftUI
 
 struct DragAndDropView: View
 {
-    let state: XMLManagerState
+    let text: String
     let dropActive: Bool
     
     var body: some View
     {
-        contentView()
+        Text(text)
             .font(.headline)
             .foregroundColor(dropActive ? .green : .accentColor)
             .padding(24)
@@ -16,18 +16,6 @@ struct DragAndDropView: View
                     .strokeBorder(style: StrokeStyle(lineWidth: 3, dash: [8]))
                     .foregroundColor(dropActive ? .green : .accentColor))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-    
-    func contentView() -> AnyView
-    {
-        switch state
-        {
-        case .waiting, .presenting:
-            return AnyView(Text("Drag a folder with XIBs and Storyboards"))
-        
-        case .loading(let foundXibs, let foundStoryboards):
-            return AnyView(Text("Found xibs: \(foundXibs), storyboards: \(foundStoryboards)"))
-        }
     }
 }
 

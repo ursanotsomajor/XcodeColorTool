@@ -10,28 +10,26 @@ struct ContentView: View
     var body: some View
     {
         contentView()
-            .onDrop(of: [(kUTTypeFileURL as String)], delegate: self)
     }
     
     private func contentView() -> AnyView
-    {        
-        if dropActive {
-            return AnyView(DragAndDropView(state: manager.state, dropActive: dropActive))
-        }
-        
+    {
+        let defaultText = "Drag a folder with XIBs and Storyboards"
+
         switch manager.state
         {
-        case .waiting, .loading:
-            return AnyView(DragAndDropView(state: manager.state, dropActive: dropActive))
+        case .waiting:
+            return AnyView(
+                DragAndDropView(text: defaultText, dropActive: dropActive)
+                    .onDrop(of: [(kUTTypeFileURL as String)], delegate: self)
+            )
 
-        case .presenting(let operation):
-            var view = FileListView(operation: operation)
+        case .presenting:
+            return AnyView(FileListView(manager: manager))
             
-            view.onReplaceColorsPressed = { operation in
-                self.manager.replaceColors(operation: operation)
-            }
-            
-            return AnyView(view)
+        case .loading(let foundXibs, let foundStoryboards):
+            let text = "Found xibs: \(foundXibs), storyboards: \(foundStoryboards)"
+            return AnyView(DragAndDropView(text: text, dropActive: dropActive))
         }
     }
 }
@@ -40,7 +38,7 @@ extension ContentView: DropDelegate
 {
     func performDrop(info: DropInfo) -> Bool
     {
-        return manager.onDrop(info: info)
+        return manager.onDrop(info: info, type: .interface)
     }
     
     func dropEntered(info: DropInfo)

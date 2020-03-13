@@ -2,33 +2,51 @@ import SwiftUI
 
 struct FileListView: View
 {
-    var onReplaceColorsPressed: ((ColorReplacementOperation) -> Void)?
+    @ObservedObject var manager: XMLManager
     
-    @ObservedObject var operation: ColorReplacementOperation
+    @State private var dropEntered = false
     
     var body: some View
     {
-        HStack {
+        content()
+    }
+    
+    private func content() -> AnyView
+    {
+        return AnyView(
             
-            list()
-            
-            controls()
-                .padding(.bottom, 16)
-                .padding(.trailing, 8)
-        }
+            HStack {
+                list()
+                
+                if dropEntered
+                {
+                    DragAndDropView(text: "Drag a folder containing\na color palette", dropActive: true)
+                }
+                else
+                {
+                    controls()
+                        .padding(.bottom, 16)
+                        .padding(.trailing, 8)
+                }
+            }
+            .onDrop(of: [(kUTTypeFileURL as String)], delegate: self)
+        )
     }
     
     private func list() -> AnyView
     {
+        guard case .presenting(let operation) = manager.state else { return AnyView(EmptyView()) }
+        
         return AnyView(List(operation.files) { item -> FileListItemView in
-            var view = FileListItemView(model: item, checked: self.operation.selectedFileIDs.contains(item.id))
-            
+            var view = FileListItemView(model: item, checked: operation.selectedFileIDs.contains(item.id))
+
             view.onCheckStatusUpdated = { model, checked in
-                if self.operation.selectedFileIDs.contains(model.id) {
-                    self.operation.selectedFileIDs.remove(model.id)
+                if operation.selectedFileIDs.contains(model.id)
+                {
+                    operation.selectedFileIDs.remove(model.id)
                 }
                 else {
-                    self.operation.selectedFileIDs.insert(model.id)
+                    operation.selectedFileIDs.insert(model.id)
                 }
             }
             
@@ -38,12 +56,32 @@ struct FileListView: View
     
     private func controls() -> AnyView
     {
-        var view = FileListControls(operation: operation)
+        guard case .presenting(let operation) = manager.state else { return AnyView(EmptyView()) }
         
+        var view = FileListControls(operation: operation)
+
         view.onReplaceColorsPressed = {
-            self.onReplaceColorsPressed?(self.operation)
+            self.manager.replaceColors(operation: operation)
         }
         
         return AnyView(view)
+    }
+}
+
+extension FileListView: DropDelegate
+{
+    func performDrop(info: DropInfo) -> Bool
+    {
+        return manager.onDrop(info: info, type: .palette)
+    }
+    
+    func dropEntered(info: DropInfo)
+    {
+        dropEntered = true
+    }
+    
+    func dropExited(info: DropInfo)
+    {
+        dropEntered = false
     }
 }

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ColorReplacementModel: Identifiable
+struct ColorReplacementModel: Identifiable, Hashable
 {
     var id = UUID()
     
